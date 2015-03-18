@@ -12,13 +12,13 @@ gulp.task('test', ['build'], function() {
 
 gulp.task('build', function() {
   return gulp
-    .src('src/backbone.virtual-collection.js')
+    .src('src/chaplin.virtual-collection.js')
     .pipe(umd({
       dependencies: function () {
         return [{
-          name: 'backbone',
-          global: 'Backbone',
-          param: 'Backbone'
+          name: 'chaplin',
+          global: 'Chaplin',
+          param: 'Chaplin'
         }, {
           name: 'underscore',
           global: '_',
@@ -37,7 +37,7 @@ gulp.task('build', function() {
 
 gulp.task('minify', function() {
   return gulp
-    .src('backbone.virtual-collection.js')
+    .src('chaplin.virtual-collection.js')
     .pipe(uglify())
     .pipe(rename(function (path) {
         path.extname = '.min' + path.extname;

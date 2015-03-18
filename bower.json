@@ -1,9 +1,9 @@
 {
-  "name": "backbone-virtual-collection",
-  "version": "0.6.3",
-  "main": ["./backbone.virtual-collection.js"],
+  "name": "chaplin-virtual-collection",
+  "version": "0.7.0",
+  "main": "chaplin.virtual-collection.js",
   "dependencies": { 
-  	"backbone": "*",
+  	"chaplin": "*",
   	"underscore": "*"
   },
   "ignore": [

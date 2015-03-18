@@ -1,7 +1,7 @@
 
 // Available under the MIT License (MIT);
 
-var VirtualCollection = Backbone.VirtualCollection = Backbone.Collection.extend({
+var VirtualCollection = Chaplin.VirtualCollection = Chaplin.Collection.extend({
 
   constructor: function (collection, options) {
     options = options || {};
@@ -12,7 +12,7 @@ var VirtualCollection = Backbone.VirtualCollection = Backbone.Collection.extend(
     if (options.destroy_with) this.bindLifecycle(options.destroy_with, 'destroy'); // Marionette 2.*
     if (!this.model) this.model = collection.model;
 
-    this.accepts = VirtualCollection.buildFilter(options.filter);
+    this.accepts = this.buildFilter(options.filter);
     this._rebuildIndex();
     this.listenTo(this.collection, 'add', this._onAdd);
     this.listenTo(this.collection, 'remove', this._onRemove);
@@ -30,7 +30,7 @@ var VirtualCollection = Backbone.VirtualCollection = Backbone.Collection.extend(
   },
 
   updateFilter: function (filter) {
-    this.accepts = VirtualCollection.buildFilter(filter);
+    this.accepts = this.buildFilter(filter);
     this._rebuildIndex();
     this.trigger('filter', this, filter);
     this.trigger('reset', this, filter);
@@ -164,9 +164,7 @@ var VirtualCollection = Backbone.VirtualCollection = Backbone.Collection.extend(
     if (!_.contains(explicitlyHandledEvents, eventName)) {
       this.trigger.apply(this, arguments);
     }
-  }
-
-}, { // static props
+  },
 
   buildFilter: function (options) {
     if (!options) {
@@ -206,4 +204,3 @@ function sortedIndexTwo (array, obj, iterator, context) {
   return low;
 }
 
-_.extend(VirtualCollection.prototype, Backbone.Events);
